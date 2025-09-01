@@ -1,36 +1,4 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Ansible Projects — README</title>
-  <style>
-    :root{
-      --maxw:1000px;
-      --accent:#1f6feb;
-      --muted:#6b7280;
-      --bg:#f7f9fb;
-      --card:#ffffff;
-      --mono: Menlo, Monaco, "Courier New", monospace;
-    }
-    body{font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; margin:0; background:var(--bg); color:#0f172a;}
-    .wrap{max-width:var(--maxw); margin:32px auto; padding:24px;}
-    header{display:flex;gap:16px;align-items:center}
-    h1{margin:0; font-size:28px}
-    p.lead{margin:0;color:var(--muted)}
-    nav{margin-top:12px; display:flex; gap:8px; flex-wrap:wrap}
-    a.chip{background:var(--card); padding:6px 10px;border-radius:8px; color:var(--accent); text-decoration:none; border:1px solid rgba(15,23,42,0.06)}
-    section.card{background:var(--card); padding:18px; margin-top:18px; border-radius:12px; box-shadow:0 6px 18px rgba(15,23,42,0.04);}
-    pre{background:#0b1220;color:#dbeafe;padding:12px;border-radius:8px;overflow:auto;font-family:var(--mono);font-size:13px}
-    code{background:#eef2ff;padding:2px 6px;border-radius:6px;font-family:var(--mono)}
-    img.responsive{max-width:100%; height:auto; display:block; margin:12px 0; border-radius:8px; border:1px solid rgba(2,6,23,0.05)}
-    h2{margin-top:0}
-    ul{line-height:1.5}
-    .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px}
-    footer{margin-top:28px;color:var(--muted); font-size:13px}
-    .meta{color:var(--muted); font-size:13px}
-  </style>
-</head>
+
 <body>
   <div class="wrap">
     <header>
