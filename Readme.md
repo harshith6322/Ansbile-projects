@@ -1,21 +1,14 @@
-Got it 👍 You want a **README.md** for your Ansible project that feels professional, covers:
-
-* **Architecture (how Ansible works)**
-* **Comparison (Ansible vs Chef vs Puppet, why Ansible is chosen)**
-* **Your 2 Projects explained** (with structure + key commands)
-
-Here’s a polished `README.md` you can use 👇
-
 ---
 
+```markdown
 # Ansible Projects 🚀
 
 ## 📌 Overview
 
 This repository contains two Ansible-based automation projects:
 
-1. **Exploring Ansible Modules** → Installing packages, managing users, cloning repos, and more.
-2. **Deploying a React App on Apache/HTTPD** → End-to-end deployment of a React portfolio website.
+1. **Exploring Ansible Modules** → Installing packages, managing users, cloning repos, and more.  
+2. **Deploying a React App on Apache/HTTPD** → End-to-end deployment of a React portfolio website.  
 
 Both projects are fully automated using **Ansible Playbooks**, secured with **Vault**, and organized with inventory and configuration files.
 
@@ -25,23 +18,27 @@ Both projects are fully automated using **Ansible Playbooks**, secured with **Va
 
 Ansible follows a **master–slave (control–managed nodes)** model:
 
-* **Control Node (Master):**
-  The machine where Ansible is installed. It runs the playbooks and manages remote systems over **SSH**.
+- **Control Node (Master):**  
+  The machine where Ansible is installed. It runs the playbooks and manages remote systems over **SSH**.  
 
-* **Managed Nodes (Slaves):**
-  The target servers where tasks are executed. No agent is required, making it **agentless**.
+- **Managed Nodes (Slaves):**  
+  The target servers where tasks are executed. No agent is required, making it **agentless**.  
 
-* **Inventory:**
-  A list of target hosts defined in `inventory.ini`.
+- **Inventory:**  
+  A list of target hosts defined in `inventory.ini`.  
 
-* **Playbooks:**
-  YAML files (`ansible-playbook.yml`) containing tasks.
+- **Playbooks:**  
+  YAML files (`ansible-playbook.yml`) containing tasks.  
 
-* **Modules:**
-  Pre-defined units of work (e.g., `yum`, `apt`, `user`, `git`, `service`).
+- **Modules:**  
+  Pre-defined units of work (e.g., `yum`, `apt`, `user`, `git`, `service`).  
 
-**Flow:**
+**Flow:**  
 👉 Control Node runs playbook → Connects via SSH → Executes modules → Desired state achieved.
+
+### 📊 Architecture Diagram
+
+![Ansible Architecture](A_2D_digital_schematic_diagram_illustrates_Ansible.png)
 
 ---
 
@@ -57,16 +54,17 @@ Ansible follows a **master–slave (control–managed nodes)** model:
 
 👉 **Why Ansible?**
 
-* Agentless (only SSH needed)
-* Human-readable YAML playbooks
-* Easy integration with DevOps workflows
-* Faster to set up and manage
+- Agentless (only SSH needed)  
+- Human-readable YAML playbooks  
+- Easy integration with DevOps workflows  
+- Faster to set up and manage  
 
 ---
 
 ## 📂 Project Structure
 
 ```
+
 ├── project-1-modules/             # Playing with Ansible modules
 │   ├── ansible-playbook.yml
 │   ├── vault.yml
@@ -80,7 +78,8 @@ Ansible follows a **master–slave (control–managed nodes)** model:
 │   └── inventory.ini
 │
 └── README.md
-```
+
+````
 
 ---
 
@@ -90,15 +89,18 @@ This project demonstrates how to use various **Ansible modules** effectively.
 
 ### Key Features
 
-* Install packages (`yum`, `apt`)
-* Manage users (`user`)
-* Copy files (`copy`)
-* Run shell commands (`shell`, `debug`)
-* Clone GitHub repos (`git`)
+- Install packages (`yum`, `apt`)  
+- Manage users (`user`)  
+- Copy files (`copy`)  
+- Run shell commands (`shell`, `debug`)  
+- Clone GitHub repos (`git`)  
 
 ### Example Commands
 
 ```bash
+# Test connectivity with all nodes
+ansible -i inventory.ini all -m ping
+
 # Run playbook
 ansible-playbook -i inventory.ini ansible-playbook.yml
 
@@ -107,7 +109,11 @@ ansible-vault encrypt vault.yml
 
 # Decrypt secrets
 ansible-vault decrypt vault.yml
-```
+````
+
+### ▶️ Sample Output
+
+![Modules Playbook Output](images/project1-output.png)
 
 ---
 
@@ -125,13 +131,19 @@ This project automates deploying a React app on an **Apache web server**.
 ### Example Commands
 
 ```bash
-# Run deployment
+# Run deployment with vault
 ansible-playbook -i inventory.ini ansible-playbook.yml --ask-vault-pass
 
 # Check Apache service
 systemctl status httpd   # (RedHat)
 systemctl status apache2 # (Debian)
 ```
+
+### ▶️ Sample Output
+
+![React App Deployment Output](images/project2-output.png)
+
+![Website Running on Apache](images/react-website.png)
 
 ---
 
@@ -148,6 +160,54 @@ In both projects, package/service states are managed as:
 
 ---
 
+## 🛠️ Common Commands Used
+
+### 1️⃣ Test Connectivity with Ping
+
+```bash
+ansible -i inventory.ini all -m ping
+```
+
+### 2️⃣ Vault Commands
+
+```bash
+# Create a new encrypted file
+ansible-vault create vault.yml  
+
+# Encrypt an existing file
+ansible-vault encrypt vault.yml  
+
+# Decrypt a file
+ansible-vault decrypt vault.yml  
+
+# Edit an encrypted file
+ansible-vault edit vault.yml
+```
+
+### 3️⃣ Run Playbook with Vault
+
+```bash
+ansible-playbook -i inventory.ini ansible-playbook.yml --ask-vault-pass
+```
+
+---
+
+## 📸 Results (Gallery)
+
+* Ansible Architecture
+  ![Ansible Architecture](A_2D_digital_schematic_diagram_illustrates_Ansible.png)
+
+* Project 1 Output
+  ![Modules Playbook Output](images/project1-output.png)
+
+* Project 2 Deployment
+  ![React App Deployment Output](images/project2-output.png)
+
+* Website Running
+  ![Website Screenshot](images/react-website.png)
+
+---
+
 ## ✅ Conclusion
 
 With these two projects, I covered:
@@ -158,6 +218,6 @@ With these two projects, I covered:
 
 Ansible’s **simplicity + power** makes it the go-to choice over Chef and Puppet for modern DevOps automation.
 
----
+```
 
-👉 Harshith, do you want me to also add **sample outputs (screenshots/expected results)** to this README so it feels more like a professional project portfolio?
+---
