@@ -29,6 +29,17 @@ Relative (preferred):
 
 ```markdown
 ![Ansible Architecture](images/Ansible_Architecture.png)
+```
+
+
+```html
+<div align="center">
+  <img src="https://raw.githubusercontent.com/harshith6322/Ansbile-projects/blob/main/images/Ansible_Architecture.png" alt="Ansible Architecture" width="720px" hight="400px">
+</div>
+```
+
+
+
 ---
 
 ## ⚖️ Why Ansible (vs Chef / Puppet)
