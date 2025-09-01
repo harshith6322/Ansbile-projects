@@ -108,9 +108,9 @@ ansible-vault edit vault.yml
 
 Add your run screenshots to `images/project1-output.png` and reference them:
 
-```markdown
+
 <img width="1091" height="174" alt="Screenshot 2025-08-24 210150" src="https://github.com/user-attachments/assets/3d145282-e0ab-468e-a077-d2f58bdf8934" />
-```
+
 
 ---
 
