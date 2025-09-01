@@ -41,6 +41,7 @@ Ansible follows a **master–slave (control–managed nodes)** model:
 ### 📊 Architecture Diagram
 
 ![Ansible Architecture](./images/Ansible_Architecture.png)
+<image src="./images/Ansible_Architecture.png">
 
 ---
 
