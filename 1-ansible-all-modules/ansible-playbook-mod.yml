@@ -1,0 +1,81 @@
+---
+# state: present , absent , latest , started , stopped , restarted 
+
+- name: working on yum and apt for httpd
+  hosts: all #localhost all [0]clear
+  connection: ssh #local
+  become: true
+
+  vars:
+    p: present
+    a: absent
+  vars_files:
+    - vault.yml
+    
+
+  # roles:
+  #   finalename.yml
+  tasks:
+    - name: Install docker on RedHat
+      ansible.builtin.yum: 
+        name: docker
+        state: "{{ p }}"
+      when: ansible_facts['os_family'] == "RedHat"
+      ignore_errors: yes 
+      
+      
+
+    - name: Install docker on Ubuntu
+      ansible.builtin.apt:
+        name: docker.io
+        state: "{{ p }}"
+      when: ansible_facts['os_family'] == "Debian"
+      ignore_errors: yes
+
+    - name: Users
+      ansible.builtin.user:
+        name: "{{ item }}"
+        # comment: harshith reddy
+        state: "{{p}}"
+        create_home: yes
+        group: "{{ 'wheel' if ansible_facts['os_family'] == 'RedHat' else 'sudo' }}"
+        shell: /bin/bash
+      loop:
+          - harshith
+          - divya
+          - hima
+          - reddy
+      
+      # tags: run
+        # state: "{{ a }}"
+        # remove: yes
+
+    - name: Copy
+      ansible.builtin.copy:
+        src: /root/ansible/
+        dest: /root/ansible/
+        owner: root
+        group: root
+        mode: 777
+        # remote_src: true
+
+    - name: Command && debug
+      ansible.builtin.shell:
+        cmd: ls /root/ansible/
+      register: output
+      # tags: run
+
+    - name: output
+      ansible.builtin.debug:
+        msg: "{{output.stdout_lines}}"
+      
+      # tags: run
+
+    - name: Git 
+      ansible.builtin.git:
+        repo: "https://{{ github_token }}@github.com/{{github_url}}"
+        dest: /root/github
+        version: main
+      tags: run
+
+

@@ -1,0 +1,56 @@
+---
+- name: Deploy website using httpd 
+  hosts: all
+  connection: ssh
+  become: true
+
+
+  vars_files:
+     - vault.yml
+
+  tasks:
+    - name: Show password
+      ansible.builtin.debug:  
+        msg: "The value of my_variable is: {{ github_token }} and {{github_username}} and {{github_url}}"
+
+    - name: Install git
+      ansible.builtin.yum: 
+        name: git 
+        state: present
+
+    - name: Install httpd
+      ansible.builtin.yum:
+        name: "{{'httpd' if ansible_facts['os_family'] === 'RedHat' else 'apache2' }}" 
+        state: present
+      
+
+    - name: Start httpd
+      ansible.builtin.service:
+        name: "{{'httpd' if ansible_facts['os_family'] === 'RedHat' else 'apache2' }}" 
+        state: started
+        enabled: true
+
+    - name: Clone portfolio repo
+      ansible.builtin.git:
+        repo: "https:{{ github_token }}//github.com/{{github_username}}/{{github_url}}"
+        dest: /tmp/website
+        version: HEAD
+
+    - name: Copy index.html
+      ansible.builtin.copy:
+        src: /tmp/website/index.html
+        dest: /var/www/html/index.html
+        owner: apache
+        group: apache
+        mode: '0644'
+        remote_src: true
+
+    - name: Copy assets folder
+      ansible.builtin.copy:
+        src: /tmp/website/assets/
+        dest: /var/www/html/assets/
+        owner: apache
+        group: apache
+        mode: '0755'
+        remote_src: true
+
