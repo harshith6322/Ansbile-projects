@@ -27,11 +27,11 @@ Ansible uses a **control node → managed nodes** model (agentless):
 
 Relative (preferred):
 
-```markdown
+
 ![Ansible Architecture]("https://user-images.githubusercontent.com/43399466/217262726-7cabcb5b-074d-45cc-950e-84f7119e7162.png")
 
 
-```
+
  ```html
 <div align="center">
   <img src="https://raw.githubusercontent.com/harshith6322/Ansbile-projects/blob/main/images/Ansible_Architecture.png" alt="Ansible Architecture" width="720px" hight="400px">
