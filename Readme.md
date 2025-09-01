@@ -28,7 +28,7 @@ Ansible uses a **control node → managed nodes** model (agentless):
 Relative (preferred):
 
 
-![Ansible Architecture]("images/Ansible_Architecture.png")
+![Ansible Architecture]("https://github.com/harshith6322/Ansbile-projects/blob/main/images/Ansible_Architecture.png")
 
 
 
