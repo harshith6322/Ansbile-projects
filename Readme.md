@@ -1,67 +1,62 @@
+# Ansible Projects 🚀
 
-<body>
-  <div class="wrap">
-    <header>
-      <div>
-        <h1>Ansible Projects 🚀</h1>
-        <p class="lead">Two Ansible projects: exploring modules and deploying a React app on Apache/HTTPD.</p>
-        <nav>
-          <a class="chip" href="#overview">Overview</a>
-          <a class="chip" href="#architecture">Architecture</a>
-          <a class="chip" href="#project1">Project 1</a>
-          <a class="chip" href="#project2">Project 2</a>
-          <a class="chip" href="#inventory">Inventory</a>
-          <a class="chip" href="#commands">Commands</a>
-        </nav>
-      </div>
-    </header>
+## 📌 Overview
 
-    <section id="overview" class="card">
-      <h2>📌 Overview</h2>
-      <p>This repository contains two Ansible-based automation projects:</p>
-      <ol>
-        <li><strong>Exploring Ansible Modules</strong> — Installing packages, managing users, copying files, cloning repos, and more.</li>
-        <li><strong>Deploying a React App on Apache/HTTPD</strong> — End-to-end deployment of a React portfolio website.</li>
-      </ol>
-      <p class="meta">Playbooks use Ansible Vault for secrets and host groups are defined in <code>inventory.ini</code>. Put images in <code>images/</code>.</p>
-    </section>
+This repository contains two Ansible-based automation projects:
 
-    <section id="architecture" class="card">
-      <h2>🏗️ How Ansible Works (Architecture)</h2>
-      <ul>
-        <li><strong>Control Node (Master):</strong> Runs playbooks and connects to targets over SSH.</li>
-        <li><strong>Managed Nodes (Slaves):</strong> Targets where modules execute — no agent required.</li>
-        <li><strong>Inventory:</strong> Host groups and hosts (in <code>inventory.ini</code>).</li>
-        <li><strong>Playbooks:</strong> YAML files that list plays and tasks.</li>
-        <li><strong>Modules:</strong> Units of work like <code>yum</code>, <code>apt</code>, <code>user</code>, <code>git</code>, <code>service</code>.</li>
-      </ul>
+1. **Exploring Ansible Modules** → Installing packages, managing users, copying files, cloning repos, and more.
+2. **Deploying a React App on Apache/HTTPD** → End-to-end deployment of a React portfolio website.
 
-      <p><strong>Flow:</strong> Control Node runs playbook → connects via SSH → executes modules → target converges to desired state.</p>
+Both projects use **Ansible playbooks**, secrets stored with **Ansible Vault**, and host groups defined in an `inventory.ini`. Images and example outputs are placed in an `images/` folder so the README can show architecture and run results.
 
-      <h3>Architecture Diagram</h3>
+---
 
-      <!-- Relative path first, onerror uses raw fallback. Replace rawBase if your repo differs. -->
-      <img class="responsive" 
-           src="images/Ansible_Architecture.png" 
-           alt="Ansible Architecture"
-           onerror="fallback(this, 'images/Ansible_Architecture.png')">
+## 🏗️ How Ansible Works (Architecture)
 
-      <small class="meta">If the image above fails to load, it will automatically try the raw GitHub URL.</small>
-    </section>
+Ansible uses a **control node → managed nodes** model (agentless):
 
-    <section id="why" class="card">
-      <h2>⚖️ Why Ansible (vs Chef / Puppet)</h2>
-      <ul>
-        <li><strong>Agentless</strong> — only SSH required.</li>
-        <li><strong>Simple syntax</strong> — YAML playbooks are readable and maintainable.</li>
-        <li><strong>Fast to adopt</strong> — quick setup and strong community adoption.</li>
-        <li><strong>Push model</strong> — control node initiates changes (good for CI/CD).</li>
-      </ul>
-    </section>
+* **Control Node (Master):** Runs playbooks, connects to targets over SSH.
+* **Managed Nodes (Slaves):** Target servers where modules execute. No agent required.
+* **Inventory:** Host groups and hosts (in `inventory.ini`).
+* **Playbooks:** YAML files (`ansible-playbook.yml`) that list plays and tasks.
+* **Modules:** Units of work like `yum`, `apt`, `user`, `git`, `service`.
 
-    <section id="structure" class="card">
-      <h2>📂 Project Structure</h2>
-      <pre><code>.
+**Flow:** Control Node runs playbook → connects via SSH → executes modules → target converges to desired state.
+
+### 📊 Architecture Diagram
+
+Relative (preferred):
+
+```markdown
+![Ansible Architecture](/images/Ansible_Architecture.png "Architecture")
+
+
+```
+ ```html
+<div align="center">
+  <img src="https://raw.githubusercontent.com/harshith6322/Ansbile-projects/blob/main/images/Ansible_Architecture.png" alt="Ansible Architecture" width="720px" hight="400px">
+</div>
+``` 
+
+
+
+---
+
+## ⚖️ Why Ansible (vs Chef / Puppet)
+
+* **Agentless** — only SSH required (no agent on managed nodes).
+* **Simple syntax** — YAML playbooks are readable and easy to maintain.
+* **Fast to adopt** — quick to set up, widely adopted by DevOps teams.
+* **Push model** — control node initiates changes, good for CI/CD integration.
+
+---
+
+## 📂 Project Structure
+
+Use this structure in your repo:
+
+```
+.
 ├── project-1-modules/
 │   ├── ansible-playbook.yml
 │   ├── vault.yml
@@ -81,91 +76,129 @@
 │   └── react-website.png
 │
 └── README.md
-</code></pre>
-    </section>
+```
 
-    <section id="project1" class="card">
-      <h2>🔹 Project 1 — Playing with Ansible Modules</h2>
-      <p><strong>Purpose:</strong> Learn modules like <code>yum</code>, <code>apt</code>, <code>user</code>, <code>copy</code>, <code>git</code>, <code>shell</code>, and <code>debug</code>.</p>
-      <ul>
-        <li>Conditional package installs using <code>ansible_facts['os_family']</code>.</li>
-        <li>Create users with correct group/shell.</li>
-        <li>Copy files, register command outputs, and show them with <code>debug</code>.</li>
-        <li>Clone GitHub repos using secrets from <code>vault.yml</code>.</li>
-      </ul>
+---
 
-      <h3>Commands</h3>
-      <pre><code># Test connectivity
+## 🔹 Project 1 — Playing with Ansible Modules
+
+**Purpose:** Learn and demonstrate modules like `yum`, `apt`, `user`, `copy`, `git`, `shell`, and `debug`.
+
+**Playbook highlights:**
+
+* Conditional package installs using `ansible_facts['os_family']`.
+* Create users with correct group/shell.
+* Copy files and register command output, then display via `debug`.
+* Clone GitHub repos using `git` module and secrets from `vault.yml`.
+
+**Commands**
+
+```bash
+# Test connectivity
 ansible -i inventory.ini all -m ping
 
 # Run the playbook
 ansible-playbook -i inventory.ini ansible-playbook.yml
 
-# Vault
+# Vault: encrypt file
 ansible-vault encrypt vault.yml
+
+# Vault: decrypt file
 ansible-vault decrypt vault.yml
+
+# Vault: edit file
 ansible-vault edit vault.yml
-</code></pre>
+```
 
-      <h3>Sample Output</h3>
-      <img class="responsive" src="images/project1-output.png" alt="Project 1 Output" onerror="fallback(this, 'images/project1-output.png')">
-    </section>
+### ▶️ Sample Output
 
-    <section id="project2" class="card">
-      <h2>🔹 Project 2 — Deploy React App on Apache/HTTPD</h2>
-      <p><strong>Purpose:</strong> Automate deploying a React portfolio to Apache (<code>httpd</code> / <code>apache2</code>).</p>
-      <ul>
-        <li>Install <code>git</code> and <code>httpd</code>/<code>apache2</code> depending on OS family.</li>
-        <li>Enable and start the web service.</li>
-        <li>Clone React repo to <code>/tmp/website</code> and copy <code>index.html</code> + assets to <code>/var/www/html/</code>.</li>
-      </ul>
+Add your run screenshots to `images/project1-output.png` and reference them:
 
-      <h3>Commands</h3>
-      <pre><code># Run deployment (asks for vault password)
+```markdown
+![Modules Playbook Output](images/project1-output.png)
+```
+
+---
+
+## 🔹 Project 2 — Deploy React App on Apache/HTTPD
+
+**Purpose:** Automate deploying a React portfolio to Apache (httpd / apache2 depending on OS).
+
+**Playbook highlights:**
+
+* Install `git` and `httpd`/`apache2` depending on OS family.
+* Enable and start the web service.
+* Clone React repo to `/tmp/website` and copy `index.html` + `assets/` to `/var/www/html/`.
+
+**Commands**
+
+```bash
+# Run deployment (asks for vault password)
 ansible-playbook -i inventory.ini ansible-playbook.yml --ask-vault-pass
 
-# Check Apache service on target node
+# Check Apache service (on target node)
 systemctl status httpd   # (RedHat)
 systemctl status apache2 # (Debian/Ubuntu)
-</code></pre>
+```
 
-      <h3>Sample Output</h3>
-      <div class="gallery">
-        <img class="responsive" src="images/project2-output.png" alt="Project 2 Output" onerror="fallback(this, 'images/project2-output.png')">
-        <img class="responsive" src="images/react-website.png" alt="React Website Screenshot" onerror="fallback(this, 'images/react-website.png')">
-      </div>
-    </section>
+### ▶️ Sample Output
 
-    <section id="states" class="card">
-      <h2>📖 Supported States</h2>
-      <ul>
-        <li><code>present</code> → Install</li>
-        <li><code>absent</code> → Remove</li>
-        <li><code>latest</code> → Upgrade</li>
-        <li><code>started</code>/<code>stopped</code>/<code>restarted</code> → Service control</li>
-      </ul>
-    </section>
+Place screenshots in:
 
-    <section id="commands" class="card">
-      <h2>🛠️ Common Commands Summary</h2>
-      <pre><code># Ping all hosts
-ansible -i inventory.ini all -m ping
+* `images/project2-output.png` — playbook run output
+* `images/react-website.png` — screenshot of served website
 
-# Vault
-ansible-vault create vault.yml
-ansible-vault encrypt vault.yml
-ansible-vault decrypt vault.yml
-ansible-vault edit vault.yml
+Reference them:
 
-# Run playbook
-ansible-playbook -i inventory.ini ansible-playbook.yml --ask-vault-pass
-</code></pre>
-    </section>
+```markdown
+![React App Deployment Output](images/project2-output.png)
+![Website Running on Apache](images/react-website.png)
+```
 
-    <section id="inventory" class="card">
-      <h2>🔎 Example <code>inventory.ini</code></h2>
+---
 
-      <pre><code>[slaves]
+## 📖 Supported States
+
+In playbooks you used state values like:
+
+* `present` → ensure installed
+* `absent` → ensure removed
+* `latest` → upgrade to latest
+* `started` / `stopped` / `restarted` → service control
+
+---
+
+## 🛠️ Common Commands Summary
+
+* Ping all hosts:
+
+  ```bash
+  ansible -i inventory.ini all -m ping
+  ```
+
+* Vault:
+
+  ```bash
+  ansible-vault create vault.yml
+  ansible-vault encrypt vault.yml
+  ansible-vault decrypt vault.yml
+  ansible-vault edit vault.yml
+  ```
+
+* Run playbook:
+
+  ```bash
+  ansible-playbook -i inventory.ini ansible-playbook.yml --ask-vault-pass
+  ```
+
+---
+
+## 🔎 Example `inventory.ini`
+
+Use this inventory (based on the hosts you gave). Save to `inventory.ini` and commit.
+
+```ini
+[slaves]
 107.21.181.236
 54.174.249.239
 
@@ -174,39 +207,18 @@ ansible-playbook -i inventory.ini ansible-playbook.yml --ask-vault-pass
 
 [ubuntu]
 54.174.249.239
-</code></pre>
+```
 
-      <p class="meta">If you use SSH user/key, add per-host vars or use a <code>group_vars/</code> folder. Example:</p>
+If you use SSH user/key, you can add per-host vars or a `group_vars/` folder. Example per-host with user/key:
 
-      <pre><code>[slaves]
+```ini
+[slaves]
 107.21.181.236 ansible_user=ec2-user ansible_ssh_private_key_file=~/.ssh/id_rsa
 54.174.249.239 ansible_user=ubuntu   ansible_ssh_private_key_file=~/.ssh/id_rsa
-</code></pre>
-    </section>
+```
 
-    <footer>
-      <p class="meta">Tips: Commit your images in <code>images/</code>, then open this HTML file in the browser. If images still do not load, confirm the filenames, case, and branch.</p>
-      <p>Generated for — <strong>Harshith</strong></p>
-    </footer>
-  </div>
+---
 
-  <script>
-    // Fallback logic: try the raw GitHub URL if the relative path fails.
-    // IMPORTANT: Replace values below if your username/repo/branch differ.
-    const rawBase = "https://raw.githubusercontent.com/harshith6322/Ansbile-projects/main/"; // <--- update if needed
 
-    function fallback(imgEl, relPath){
-      if (imgEl.dataset.fallbackAttempted) return;
-      imgEl.dataset.fallbackAttempted = "1";
-      const filename = relPath.split('/').pop();
-      imgEl.src = rawBase + "images/" + filename;
-    }
 
-    // Optional: add click-to-open-fullsize for images
-    document.querySelectorAll('img.responsive').forEach(img=>{
-      img.style.cursor = 'pointer';
-      img.addEventListener('click', ()=> window.open(img.src, '_blank'));
-    });
-  </script>
-</body>
-</html>
+
