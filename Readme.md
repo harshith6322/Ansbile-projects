@@ -40,7 +40,7 @@ Ansible follows a **master–slave (control–managed nodes)** model:
 
 ### 📊 Architecture Diagram
 
-![Ansible Architecture](A_2D_digital_schematic_diagram_illustrates_Ansible.png)
+![Ansible Architecture](./images/Ansible_Architecture.png)
 
 ---
 
@@ -205,7 +205,5 @@ With these two projects, I covered:
 Ansible’s **simplicity + power** makes it the go-to choice over Chef and Puppet for modern DevOps automation.
 
 ```
-
----
 
 
