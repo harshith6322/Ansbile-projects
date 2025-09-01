@@ -29,18 +29,6 @@ Relative (preferred):
 
 ```markdown
 ![Ansible Architecture](images/Ansible_Architecture.png)
-```
-
-Raw GitHub link (guarantees display; replace user/repo/branch):
-
-```html
-<div align="center">
-  <img src="https://raw.githubusercontent.com/<your-username>/<your-repo>/main/images/Ansible_Architecture.png" alt="Ansible Architecture" width="720">
-</div>
-```
-
-> Tip: Replace `<your-username>` and `<your-repo>` with your GitHub values if using the raw link.
-
 ---
 
 ## ⚖️ Why Ansible (vs Chef / Puppet)
