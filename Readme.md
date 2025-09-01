@@ -26,7 +26,7 @@ Ansible uses a **control node → managed nodes** model (agentless):
 ### 📊 Architecture Diagram
 
 Relative (preferred):
-<img width="1536" height="1024" alt="Ansible Architecture" src="https://github.com/user-attachments/assets/33f44e4e-0328-4679-a408-0c54eef39afc" />
+<img width="1200" height="900" alt="Ansible Architecture" src="https://github.com/user-attachments/assets/33f44e4e-0328-4679-a408-0c54eef39afc" />
 
  ```html
 <div align="center">
