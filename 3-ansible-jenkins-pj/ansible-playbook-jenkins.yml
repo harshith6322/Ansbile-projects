@@ -1,7 +1,7 @@
 ---
 
 - name: Install Jenkins && Docker
-  hosts: jenkins-slave
+  hosts: trivy
   connection: ssh
   become: true
 
@@ -16,7 +16,7 @@
   ##### install jenkins docker on Amazon
   - name: Update && Upgrade on Amazon
     ansible.builtin.yum:
-      state: latest
+      state: present
       update_cache: true
     when: ansible_facts['os_family'] == "RedHat"
 
@@ -32,6 +32,7 @@
     args:
       creates: /var/lib/jenkins
     register: output_a
+    ignore_errors: true
     when: ansible_facts['os_family'] == "RedHat"
 
   - name: Wait for server to come back after reboot
@@ -110,12 +111,18 @@
     tags: slave
     when: ansible_facts['os_family'] == "RedHat"
 
+  - name: Install trivy on Amazon
+    ansible.builtin.shell: |
+      curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sudo sh -s -- -b /usr/local/bin  v0.65.0
+    when: ansible_facts['os_family'] == 'RedHat'
+    tags: trivy
 
-
-    
-  
-
-  
-
-
-
+  - name: Install trivy on Ubuntu
+    ansible.builtin.shell: |
+      sudo apt-get install wget gnupg
+      wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | gpg --dearmor | sudo tee /usr/share/keyrings/trivy.gpg > /dev/null
+      echo "deb [signed-by=/usr/share/keyrings/trivy.gpg] https://aquasecurity.github.io/trivy-repo/deb generic main" | sudo tee -a /etc/apt/sources.list.d/trivy.list
+      sudo apt-get update
+      sudo apt-get install trivy
+    when: ansible_facts['os_family'] == "Debian"
+    tags: trivy
